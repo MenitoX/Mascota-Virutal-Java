@@ -59,7 +59,7 @@ public class Main {
 
             if (seleccion.matches("\\d+")) {
                 int seleccionNum = Integer.parseInt(seleccion);
-                inventario.usarItem(seleccionNum, mascota);
+                inventario.usarItem(seleccionNum-1, mascota);
                 tiempoSimulado += 0.5;
                 mascota.envejecer();
             } else if (seleccion.equals("c")) {
