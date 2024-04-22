@@ -94,4 +94,8 @@ public class Mascota {
                 return "Estado desconocido";
         }
     }
-}
+    
+    public Estado getEstado() {
+        return estado;
+    }
+    }

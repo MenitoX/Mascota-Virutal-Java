@@ -13,6 +13,7 @@ public class Inventario {
 
     public void mostrarItems() {
         System.out.println("Acciones\n--------");
+        System.out.println("0: dormir");
         for (Item item : items) {
             item.mostrarInfo();
         }

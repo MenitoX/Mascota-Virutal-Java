@@ -2,10 +2,12 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.util.Scanner;
+import java.io.FileWriter;
 
 public class Main {
     private Mascota mascota;
     private Inventario inventario;
+
 
     public static void main(String[] args) throws IOException {
         // Carga de archivo config.csv
@@ -58,6 +60,15 @@ public class Main {
             seleccion = in.nextLine();
 
             if (seleccion.matches("\\d+")) {
+                if (seleccion.equals("0")) {
+                    //domir
+                    mascota.modificarEnergia(100);
+                    mascota.modificarSalud(15);
+                    mascota.modificarFelicidad(15);
+                    tiempoSimulado += 0.5;
+                    mascota.envejecer();
+                    continue;
+                }
                 int seleccionNum = Integer.parseInt(seleccion);
                 inventario.usarItem(seleccionNum-1, mascota);
                 tiempoSimulado += 0.5;
@@ -66,7 +77,8 @@ public class Main {
                 tiempoSimulado += 0.5;
                 mascota.envejecer();
             }
-        } while (!seleccion.equals("x"));
+        } while (!seleccion.equals("x") && mascota.getEstado() != Estado.Muerto);
+        printEstado(tiempoSimulado, out);
     }
 
     public void printEstado(float step, PrintStream out) {
